@@ -71,13 +71,36 @@
             a {
                 color: #3498db;
             }
+
+            .dark {
+                background-color: #1a1a2e;
+                color: #eee;
+            }
+
+            .dark h1, .dark h2, .dark h3 {
+                color: #4fc3f7;
+            }
+
+            .dark .card {
+                background: #16213e;
+                border-color: #444;
+            }
         </style>
     </head>
     <body>
         <h1>Hi, I'm Vasu</h1>
-        <h2>Aspiring software engineer & AI Engineer</h2>
-        <p>I am leanring python, Git, and web development</p>
+        <button onclick="toggleBio()">Show/Hide Bio</button>
+        <button onclick="toggleDarkMode()">Dark Mode</button>
 
+        <div id="bio">
+            <p>I am learning python, Git, and web development</p>
+            <p>Currently building projects to land my first software or AI engineering role</p>
+        </div>
+        <h2>Aspiring software engineer & AI Engineer</h2>
+        <p>I am learning python, Git, and web development</p>
+
+
+        <input type="text" id="skillSearch" placeholder="Search Skills..." onkeyup="filterSkills()">
         <h3>My Skills</h3>
         <div class="card">
             <span class="skill-tag">Python</span>
@@ -97,15 +120,44 @@
         <h3>Projects</h3>
         <div class="card">
             <h4>To-Do List CLI App</h4>
-            <p>A commnand line to-do app with persitent JSON storage, bult with Python and OOP.</p>
+            <p>A commnand line to-do app with persitent JSON storage, built with Python and OOP.</p>
         </div>
         <div class="card">
             <h4>Contact Book</h4>
-            <p>A Python contact manager using nested dictionatied with add, find and display functions</p>
+            <p>A Python contact manager using nested dictionaries with add, find and display functions</p>
         </div>
         <div class="card">
             <h4>Number guessing game</h4>
             <p>An interactive terminal game using loops and conditional logic</p>
         </div>
+        <script>
+            function toggleBio(){
+                const bio = document.getElementById("bio")
+                if (bio.style.display == "none") {
+                    bio.style.display = "block"
+                } else {
+                    bio.style.display = "none"
+                }
+            }
+            function toggleDarkMode() {
+                document.body.classList.toggle("dark")
+            }
+
+            function filterSkills() {
+                const search = document.getElementById("skillSearch").value.toLowerCase()
+                const tags = document.querySelectorAll(".skill-tag")
+
+                tags.forEach(function(tag) {
+                    if (tag.innerText.toLowerCase().includes(search)) {
+                        tag.style.display = "inline-block"
+                    } else {
+                        tag.style.display = "none"
+                    }
+                })
+
+                } 
+        </script>
+        <!-- classList.toggle() is beautiful — it adds the class if it's
+          not there, removes it if it is. One line dark mode!-->
     </body>
 </html>
